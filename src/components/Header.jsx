@@ -8,7 +8,7 @@ const Header = () => {
       <h1 className="text-5xl font-bold  mb-4 uppercase text-lightBlue ">
         Winehouse
       </h1>
-      <p className="text-2xl mb-16 animate-pulse">
+      <p className="text-2xl mb-16 animate-pulse mx-4">
         Tu descanso en Mendoza merece un lugar perfecto{" "}
       </p>
       

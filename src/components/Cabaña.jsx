@@ -1,12 +1,12 @@
 import React from "react";
 
-function Cabaña({ name, description, price }) {
+function Cabaña({ name, description, price, src }) {
   return (
     <div className="cabaña text-center space-y-2 mt-4 m-2 p-4 border-2 border-darkBlue rounded-lg cursor-pointer hover:bg-darkBlue hover:text-background hover:font-extrabold">
       <div>
         <h2 className="text-lg font-extrabold uppercase max-h-8 overflow-hidden">{name}</h2>
         <img
-          src="/example.jpg"
+          src={src}
           alt="cabaña mendoza alquiler casa fin de semana"
           className="mx-auto shadow-md border-2"
         />
@@ -19,9 +19,9 @@ function Cabaña({ name, description, price }) {
       <style jsx>{`
         .cabaña:hover {
           background-image: linear-gradient(
-            -360deg,
-            #35858B 0%, 
-            #4FBDBA 50%,
+            -180deg,
+            #AEFEFF 0%, 
+            #4FBDBA 30%,
             #35858B 100%
           );
         }
