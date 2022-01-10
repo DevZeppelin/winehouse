@@ -12,7 +12,7 @@ function Cabain({ name, description, price, src, id }) {
             alt="cabaña mendoza alquiler casa fin de semana"
             className="mx-auto shadow-md border-2"
           />
-          <p className='p-2 pb-4 h-28'>{description}</p>
+          <p className='p-2 pb-4 min-h-22 overflow-hidden'>{description}</p>
         </div>
         <div>
           <p className="uppercase text-sm ">Precio por día:</p>

@@ -15,7 +15,7 @@ function App() {
       id: 1,
       name: "Cabaña en potrerillos",
       description:
-        "Hermoso lugar, con parque, pileta y patio de jeugos. Cerca del perilago",
+        "Hermoso lugar, con parque, pileta y patio de juegos. Cerca del perilago. La casa cuenta con microondas, heladera, aire, WiFi, y una variedad de libros y discos para nunca aburrite.",
       price: 5000,
       src: "/example.jpg",
       phone: "2616452310",
@@ -93,6 +93,7 @@ function App() {
           />
           <Route
             path="cabains/:cabainId"
+            scrollToTop
             element={<CabainPage cabains={cabains} />}
           />
         </Route>
