@@ -48,7 +48,7 @@ const CabainPage = ({ cabains }) => {
         </div>
       </div>
       <Link to="/">
-        <button className="p-4 mt-16 bg-darkBlue text-background font-extrabold shadow-lightBlue inner-shadow-md text-2xl rounded-lg uppercase">
+        <button className="p-4 mt-16 bg-darkBlue text-background font-extrabold shadow-lightBlue shadow-md text-2xl rounded-lg uppercase">
         Volver 👈
         </button>
       </Link>
