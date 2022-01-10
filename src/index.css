@@ -17,3 +17,12 @@ html {
 .nav {
     font-family: monospace;
 }
+
+.cabaña:hover {
+    background-image: linear-gradient(
+      -180deg,
+      #AEFEFF 0%, 
+      #4FBDBA 30%,
+      #35858B 100%
+    )
+}

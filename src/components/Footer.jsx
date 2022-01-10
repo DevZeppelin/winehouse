@@ -8,7 +8,7 @@ const Footer = () => {
         <a href="https://www.devzeppelin.ar" target="_blank" className="font-bold text-lightBlue">
           DevZeppelin
         </a>
-        . All rights reserved {new Date().getFullYear()}{" "}
+        . Todos los derechos reservados. {new Date().getFullYear()}{" "}
       </span>
     </div>
   );
