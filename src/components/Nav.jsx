@@ -1,23 +1,128 @@
-import React from 'react'
+import { useState, useEffect } from "react";
 
 const Nav = () => {
+  const [dolar, setDolar] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(false);
 
-    const format = (date,locale,options) => 
-        new Intl.DateTimeFormat(locale,options).format(date)    
+  const toggleNav = (e) => {
+    e.preventDefault();
+    setOpen(!open);
+  };
 
-    const now = new Date()    
+  useEffect(() => {
+    const obtenerCotizacion = async () => {
+      try {
+        const url =
+          "https://www.dolarsi.com/api/api.php?type=valoresprincipales";
+        const respuesta = await fetch(url);
+        const resultado = await respuesta.json();
+        console.log(resultado);
+        setDolar(resultado);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    obtenerCotizacion();
+  }, []);
 
-    return (
-        <div className='grid grid-cols-2 text-background bg-darkBlue font-extrabold text-center py-1 text-base'>
-            <span className='flex justify-start ml-4 text-lightBlue'>{format(now, 'es', { dateStyle: 'long' })}</span>
-            <div className='nav flex gap-4 justify-end mr-6 '>
-                <p className='hidden md:flex'>Dólar Oficial<p className='pl-1 text-lightBlue'>$154</p></p>
-                <p className='flex'>Dólar Blue <p className='pl-1 text-lightBlue'>$206</p></p>
-                <p className='hidden md:flex'>Bitcoin <p className='pl-1 text-lightBlue'>$9M</p></p>
+  const format = (date, locale, options) =>
+    new Intl.DateTimeFormat(locale, options).format(date);
+
+  const now = new Date();
+
+  return (
+    <div className="md:grid grid-cols-2 text-background bg-darkBlue font-extrabold text-center py-1 text-base">
+      <span className="hidden md:flex justify-start ml-4 text-lightBlue md:text-base">
+        {format(now, "es", { dateStyle: "long" })}
+      </span>
+
+      {loading ? (
+        <p className="nav text-sm md:text-base">Obteniendo datos... </p>
+      ) : (
+        <>
+          <div className="nav flex gap-2 md:gap-4 justify-end mr-2 md:mr-6 text-sm md:text-base ">
+            <p className="flex">
+              <span className="font-extrabold underline">DÓLAR</span>: Oficial
+              <span className="pl-1 text-lightBlue">
+                ${dolar[0].casa.venta}
+              </span>
+            </p>
+            <p className="flex">
+              Blue{" "}
+              <span className="pl-1 text-lightBlue">
+                ${dolar[1].casa.venta}
+              </span>
+            </p>
+            <p className="hidden md:flex">
+              Turista{" "}
+              <span className="pl-1 text-lightBlue">
+                ${dolar[6].casa.venta}
+              </span>
+            </p>
+            <button onClick={toggleNav} className="font-black cursor-pointer">
+              +MÁS
+            </button>
+          </div>
+
+          <div
+            className="absolute z-20 right-0 md:top-8 bg-darkBlue text-background w-4/5 md:w-1/4 rounded-b-xl"
+            style={{ display: open ? "block" : "none" }}
+          >
+            <div className="flex flex-col m-2 text-center">
+              <p className="uppercase underline text-sm text-background pt-2">Dólar oficial:</p>
+              <div className="gap-4 text-center space-x-2">
+                  <span className="">Compra</span>
+                  <span className="text-lightBlue">
+                    ${dolar[0].casa.compra} 
+                  </span>
+                  <span className="pl-2">Venta</span>
+                  <span className=" text-lightBlue">
+                    ${dolar[0].casa.venta}
+                  </span>
+              </div>
+              <p className="uppercase underline text-sm text-background pt-2">Dólar blue:</p>
+              <div className="gap-4 text-center space-x-2">
+                  <span className="">Compra</span>
+                  <span className="text-lightBlue">
+                    ${dolar[1].casa.compra}
+                  </span>
+                  <span className="pl-2">Venta</span>
+                  <span className=" text-lightBlue">
+                    ${dolar[1].casa.venta}
+                  </span>
+              </div>
+              <p className="uppercase underline text-sm text-background pt-2">Dólar turista:</p>
+              <div className="gap-4 text-center space-x-2">
+                  
+                  <span>Venta</span>
+                  <span className=" text-lightBlue">
+                    ${dolar[6].casa.venta}
+                  </span>
+              </div>
+              <p className="uppercase underline text-sm text-background pt-2">Bitcoin:</p>
+              <div className="gap-4 text-center space-x-2">
+                  
+                  <span>Compra</span>
+                  <span className=" text-lightBlue">
+                    ${dolar[5].casa.compra}
+                  </span>
+              </div>
+              <p className="uppercase underline text-sm text-background pt-2">Riesgo País:</p>
+              <div className="gap-4 text-center space-x-2">
+                  
+                  
+                  <span className=" text-lightBlue">
+                    {dolar[8].casa.compra}
+                  </span>
+              </div>
             </div>
-            
-        </div>
-    )
-}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
 
-export default Nav
+export default Nav;

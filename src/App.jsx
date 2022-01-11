@@ -8,6 +8,8 @@ import Button from "./components/Button";
 import CabainPage from "./components/CabainPage";
 
 function App() {
+  
+
   const [cabains, setCabains] = useState([]);
 
   const cabainsList = [
@@ -15,11 +17,12 @@ function App() {
       id: 1,
       name: "Cabaña en potrerillos",
       description:
-        "Hermoso lugar, con parque, pileta y patio de juegos. Cerca del perilago. La casa cuenta con microondas, heladera, aire, WiFi, y una variedad de libros y discos para nunca aburrite.",
+        "Hermoso lugar, con parque, pileta y patio de juegos. Cerca del perilago. La casa cuenta con microondas, heladera, aire, WiFi, y discos para nunca aburrite.",
       price: 5000,
       src: "/example.jpg",
       phone: "2616452310",
       mail: "cabañas@gmail.com",
+      images: ["/01.jpg", "/02.jpg", "/03.jpg", "/04.jpg" ]
     },
     {
       id: 2,
