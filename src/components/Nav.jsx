@@ -34,7 +34,7 @@ const Nav = () => {
 
   return (
     <div className="md:grid grid-cols-2 text-background bg-darkBlue font-extrabold text-center py-1 text-base">
-      <span className="hidden md:flex justify-start ml-4 text-lightBlue md:text-base">
+      <span className="hidden md:flex justify-start ml-4 text-background md:text-base">
         {format(now, "es", { dateStyle: "long" })}
       </span>
 
@@ -43,24 +43,31 @@ const Nav = () => {
       ) : (
         <>
           <div className="nav flex gap-2 md:gap-4 justify-end mr-2 md:mr-6 text-sm md:text-base ">
-            <p className="flex">
-              <span className="font-extrabold underline">DÓLAR</span>: Oficial
-              <span className="pl-1 text-lightBlue">
-                ${dolar[0].casa.venta}
-              </span>
-            </p>
-            <p className="flex">
-              Blue{" "}
-              <span className="pl-1 text-lightBlue">
-                ${dolar[1].casa.venta}
-              </span>
-            </p>
-            <p className="hidden md:flex">
-              Turista{" "}
-              <span className="pl-1 text-lightBlue">
-                ${dolar[6].casa.venta}
-              </span>
-            </p>
+            { !open ? ( <div className="flex gap-2">
+              <p className="flex">
+                <span className="font-extrabold underline pr-1">DÓLAR:</span>Oficial
+                <span className="text-lightBlue pl-1">
+                  ${dolar[0].casa.venta}
+                </span>
+              </p>
+              <p className="flex">
+                Blue{" "}
+                <span className="pl-1 text-lightBlue">
+                  ${dolar[1].casa.venta}
+                </span>
+              </p>
+              <p className="hidden md:flex">
+                Turista{" "}
+                <span className="pl-1 text-lightBlue">
+                  ${dolar[6].casa.venta}
+                </span>
+              </p>
+            </div>) : null
+            
+          
+          }
+            
+           
             <button onClick={toggleNav} className="font-black cursor-pointer">
              {!open ? <> +MÁS</> : <> -MENOS</> }
             </button>
@@ -71,25 +78,25 @@ const Nav = () => {
             className="absolute z-20 right-0 md:top-8 bg-darkBlue text-background w-4/5 md:w-1/4 rounded-b-xl"
             style={{ display: open ? "block" : "none" }}
           >
-            <div className="flex flex-col m-2 text-center">
+            <div className="flex flex-col m-2 text-center nav">
               <p className="uppercase underline text-sm text-background pt-2">Dólar oficial:</p>
               <div className="gap-4 text-center space-x-2">
-                  <span className="">Compra</span>
+                  <span className=" main-font text-sm">Compra</span>
                   <span className="text-lightBlue">
                     ${dolar[0].casa.compra} 
                   </span>
-                  <span className="pl-2">Venta</span>
+                  <span className="pl-2 main-font text-sm">Venta</span>
                   <span className=" text-lightBlue">
                     ${dolar[0].casa.venta}
                   </span>
               </div>
               <p className="uppercase underline text-sm text-background pt-2">Dólar blue:</p>
               <div className="gap-4 text-center space-x-2">
-                  <span className="">Compra</span>
+                  <span className=" main-font text-sm">Compra</span>
                   <span className="text-lightBlue">
                     ${dolar[1].casa.compra}
                   </span>
-                  <span className="pl-2">Venta</span>
+                  <span className="pl-2 main-font text-sm">Venta</span>
                   <span className=" text-lightBlue">
                     ${dolar[1].casa.venta}
                   </span>
@@ -97,7 +104,7 @@ const Nav = () => {
               <p className="uppercase underline text-sm text-background pt-2">Dólar turista:</p>
               <div className="gap-4 text-center space-x-2">
                   
-                  <span>Venta</span>
+                  <span className="text-sm main-font">Venta</span>
                   <span className=" text-lightBlue">
                     ${dolar[6].casa.venta}
                   </span>
@@ -105,7 +112,7 @@ const Nav = () => {
               <p className="uppercase underline text-sm text-background pt-2">Bitcoin:</p>
               <div className="gap-4 text-center space-x-2">
                   
-                  <span>Compra</span>
+                  <span className="text-sm main-font">Compra</span>
                   <span className=" text-lightBlue">
                     ${dolar[5].casa.compra}
                   </span>

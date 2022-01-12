@@ -26,12 +26,12 @@ const CabainPage = ({ cabains }) => {
         />
         <p className="p-6 py-4 text-xl ">{item.description}</p>
 
-        <button
+        <p
           className="p-4 w-72 mx-auto font-extrabold text-lightBlue text-3xl rounded-lg cursor-pointer"
           
         >
           + Fotos 📸
-        </button>
+        </p>
        
         {item.images ? (
           <div className="block md:grid md:grid-cols-3 gap-2">
@@ -64,7 +64,7 @@ const CabainPage = ({ cabains }) => {
         </div>
       </div>
       <Link to="/">
-        <button className="p-4 mt-16 bg-darkBlue text-background font-extrabold shadow-lightBlue shadow-md text-2xl rounded-lg uppercase">
+        <button className="button p-4 mt-16 bg-darkBlue text-lightBlue font-extrabold text-2xl rounded-lg uppercase border-2 border-lightBlue">
           Volver 👈
         </button>
       </Link>
