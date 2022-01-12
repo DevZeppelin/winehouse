@@ -62,11 +62,12 @@ const Nav = () => {
               </span>
             </p>
             <button onClick={toggleNav} className="font-black cursor-pointer">
-              +MÁS
+             {!open ? <> +MÁS</> : <> -MENOS</> }
             </button>
           </div>
 
           <div
+            id="Menú-info-completa-cotización-dólar"
             className="absolute z-20 right-0 md:top-8 bg-darkBlue text-background w-4/5 md:w-1/4 rounded-b-xl"
             style={{ display: open ? "block" : "none" }}
           >
