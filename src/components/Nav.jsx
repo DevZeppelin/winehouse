@@ -39,13 +39,13 @@ const Nav = () => {
       </span>
 
       {loading ? (
-        <p className="nav text-sm md:text-base">Obteniendo datos... </p>
+        <p className="text-sm md:text-base">Obteniendo datos... </p>
       ) : (
         <>
-          <div className="nav flex gap-2 md:gap-4 justify-end mr-2 md:mr-6 text-sm md:text-base ">
+          <div className="flex gap-2 md:gap-4 justify-end mr-2 md:mr-6 text-sm md:text-base ">
             { !open ? ( <div className="flex gap-2">
               <p className="flex">
-                <span className="font-extrabold underline pr-1">DÓLAR:</span>Oficial
+                <span className="font-extrabold pr-1">DOLAR:</span>Oficial
                 <span className="text-lightBlue pl-1">
                   ${dolar[0].casa.venta}
                 </span>
@@ -81,22 +81,22 @@ const Nav = () => {
             <div className="flex flex-col m-2 text-center nav">
               <p className="uppercase underline text-sm text-background pt-2">Dólar oficial:</p>
               <div className="gap-4 text-center space-x-2">
-                  <span className=" main-font text-sm">Compra</span>
+                  <span className="text-sm">Compra</span>
                   <span className="text-lightBlue">
                     ${dolar[0].casa.compra} 
                   </span>
-                  <span className="pl-2 main-font text-sm">Venta</span>
+                  <span className="pl-2 text-sm">Venta</span>
                   <span className=" text-lightBlue">
                     ${dolar[0].casa.venta}
                   </span>
               </div>
               <p className="uppercase underline text-sm text-background pt-2">Dólar blue:</p>
               <div className="gap-4 text-center space-x-2">
-                  <span className=" main-font text-sm">Compra</span>
+                  <span className="text-sm">Compra</span>
                   <span className="text-lightBlue">
                     ${dolar[1].casa.compra}
                   </span>
-                  <span className="pl-2 main-font text-sm">Venta</span>
+                  <span className="pl-2 text-sm">Venta</span>
                   <span className=" text-lightBlue">
                     ${dolar[1].casa.venta}
                   </span>
@@ -104,7 +104,7 @@ const Nav = () => {
               <p className="uppercase underline text-sm text-background pt-2">Dólar turista:</p>
               <div className="gap-4 text-center space-x-2">
                   
-                  <span className="text-sm main-font">Venta</span>
+                  <span className="text-sm">Venta</span>
                   <span className=" text-lightBlue">
                     ${dolar[6].casa.venta}
                   </span>
@@ -112,7 +112,7 @@ const Nav = () => {
               <p className="uppercase underline text-sm text-background pt-2">Bitcoin:</p>
               <div className="gap-4 text-center space-x-2">
                   
-                  <span className="text-sm main-font">Compra</span>
+                  <span className="text-sm">Compra</span>
                   <span className=" text-lightBlue">
                     ${dolar[5].casa.compra}
                   </span>

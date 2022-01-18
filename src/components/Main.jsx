@@ -1,4 +1,4 @@
-import Cabain from "./Cabain"
+import CabainCard from "./CabainCard"
 
 
 const Main = ({cabains}) => {
@@ -7,7 +7,7 @@ const Main = ({cabains}) => {
            
         <div className=" grid grid-cols-1 md:grid-cols-3 gap-4">
           {cabains.map(cabain => (
-            <Cabain
+            <CabainCard
               key={cabain.id}
               id={cabain.id}
               name={cabain.name}
