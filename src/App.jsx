@@ -1,107 +1,64 @@
-import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { AuthProvider } from "./hooks/useAuth";
 import Layout from "./components/Layout";
-import Main from "./components/Main";
-import Header from "./components/Header";
-import Button from "./components/Button";
-import CabainPage from "./components/CabainPage";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import Home from "./pages/Home";
+import CabinDetail from "./pages/CabinDetail";
+import Publish from "./pages/Publish";
+import Dashboard from "./pages/Dashboard";
+import Admin from "./pages/Admin";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+
+const NotFound = () => (
+  <div className="mx-auto max-w-xl px-4 py-32 text-center text-lightBlue">
+    <h1 className="font-display text-4xl">404</h1>
+    <p className="mt-2 text-middleBlue">Esta página no existe.</p>
+    <Link to="/" className="mt-4 inline-block font-bold text-orange hover:underline">
+      Volver al inicio
+    </Link>
+  </div>
+);
 
 function App() {
-  
-
-  const [cabains, setCabains] = useState([]);
-
-  const cabainsList = [
-    {
-      id: 1,
-      name: "Cabaña en potrerillos",
-      description:
-        "Hermoso lugar, con parque, pileta y patio de juegos. Cerca del perilago. La casa cuenta con microondas, heladera, aire, WiFi, y discos para nunca aburrite.",
-      price: 5000,
-      src: "/example.jpg",
-      phone: "2616452310",
-      mail: "cabañas@gmail.com",
-      images: ["/01.jpg", "/02.jpg", "/03.jpg", "/04.jpg" ]
-    },
-    {
-      id: 2,
-      name: "Cabaña en Las Vegas",
-      description:
-        "Un predio amplio, con pileta y jardín. La cabaña está totalmente equipada, lista para disfrutar.",
-      price: 3000,
-      src: "/01.jpg",
-      phone: "2616452310",
-      mail: "cabañas@gmail.com",
-    },
-    {
-      id: 3,
-      name: "Casita en Vistalva",
-      description:
-        "Un predio amplio, con pileta y jardín. La cabaña está totalmente equipada, lista para disfrutar.",
-      price: 2500,
-      src: "/02.jpg",
-      phone: "2616452310",
-      mail: "cabañas@gmail.com",
-    },
-    {
-      id: 4,
-      name: "Cabaña en Potrerillos",
-      description:
-        "Un predio amplio, con pileta y jardín. La cabaña está totalmente equipada, lista para disfrutar.",
-      price: 4000,
-      src: "/03.jpg",
-      phone: "2616452310",
-      mail: "cabañas@gmail.com",
-    },
-    {
-      id: 5,
-      name: "Cabaña en El Salto",
-      description:
-        "Un predio amplio, con pileta y jardín. La cabaña está totalmente equipada, lista para disfrutar.",
-      price: 5000,
-      src: "/04.jpg",
-      phone: "2616452310",
-      mail: "cabañas@gmail.com",
-    },
-    {
-      id: 6,
-      name: "Casa en Luján de Cuyo",
-      description:
-        "Un predio amplio, con pileta y jardín. La cabaña está totalmente equipada, lista para disfrutar.",
-      price: 6000,
-      src: "/05.jpg",
-      phone: "2616452310",
-      mail: "cabañas@gmail.com",
-    },
-  ];
-
-  useEffect(() => {
-    setCabains(cabainsList);
-  }, []);
-
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route
-            index
-            element={
-              <>
-                <Header />
-                <Button />
-                <Main cabains={cabains} />
-              </>
-            }
-          />
-          <Route
-            path="cabains/:cabainId"
-            scrollToTop
-            element={<CabainPage cabains={cabains} />}
-          />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="cabanas/:slug" element={<CabinDetail />} />
+            <Route path="ingresar" element={<Login />} />
+            <Route path="registro" element={<Register />} />
+            <Route
+              path="publicar"
+              element={
+                <ProtectedRoute>
+                  <Publish />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="panel"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="admin"
+              element={
+                <ProtectedRoute requireAdmin>
+                  <Admin />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
